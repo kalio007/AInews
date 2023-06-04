@@ -31,7 +31,82 @@ function SignUp() {
     }
     
   return (
-    <div><h1>SignUp</h1></div>
+    <div>
+        <form action = '#' method='POST'>
+            <div>
+                <label
+                htmlFor='name'
+                className=''
+                >
+                    Name
+                </label>
+                <div>
+                    <input
+                      id='name'
+                      name='name'
+                      type='text'
+                      autoComplete='name'
+                      required
+                      onChange={(e) => {
+                        setUser({
+                        ...user,
+                        name: e.target.value
+                    })}}
+                    />
+                </div>
+            </div>
+            <div>
+                <label
+                htmlFor='name'
+                className=''
+                >
+                    Email
+                </label>
+                <div>
+                    <input
+                      id='email'
+                      name='email'
+                      type='email'
+                      autoComplete='email'
+                      required
+                      onChange={(e) => { 
+                        setUser({
+                        ...user,
+                        email: e.target.value
+                    })}}
+                    />
+                </div>
+            </div>
+            <div>
+                <label
+                htmlFor='password'
+                className=''
+                >
+                    Password
+                </label>
+                <div>
+                    <input
+                      id='password'
+                      name='password'
+                      type='password'
+                      autoComplete='current-password'
+                      required
+                      onChange={(e) => { 
+                        setUser({
+                        ...user,
+                        password: e.target.value
+                    })}}
+                    />
+                </div>
+            </div>
+            <button
+                type='submit'
+                onClick={signupUser}
+            >
+                Sign Up
+            </button>
+        </form>
+    </div>
   )
 }
 

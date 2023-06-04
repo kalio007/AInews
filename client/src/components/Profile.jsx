@@ -27,11 +27,9 @@ function Profile() {
     }
   return (
     <>
-      {userDetails ?
-      (
-      <>
+      { userDetails? (
         <div>
-            <h1>hey you're logged In {userDetails.name}</h1>
+            <h1>hey youre logged In</h1>
             <h2>the app stays here</h2>
             <div>
                 <button
@@ -41,9 +39,8 @@ function Profile() {
                 </button>
             </div>
         </div>
-      </>)
-      :
-      (
+    
+      ):(
         <p>
            please login in 
            <Link to="/">

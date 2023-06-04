@@ -11,18 +11,16 @@ function Login() {
     const loginUser = async (e) => {
         e.preventDefault()
         try {
-            await account.createEmailSession(
-                user.email,
-                user.password
-              );
-             navigate("/profile") 
+            await account.createEmailSession(user.email, user.password);
+            navigate('/profile') 
         } catch (error) {
             console.log(error);
         }
+
     }
   return (
     <div>
-        <form action = '#' method='POST'>
+        <form method='POST'>
             <div>
                 <label
                 htmlFor='name'
@@ -71,14 +69,14 @@ function Login() {
                 <a
                 href='/signup'
                 >
-                    Don't have an account, Sign Up!
+                    Dont have an account, Sign Up!
                 </a>
             </div>
             <button
                 type='submit'
                 onClick={loginUser}
             >
-                Sign Up
+                Sign In
             </button>
         </form>
     </div>

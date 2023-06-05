@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
 import { account } from '../appwrite/appwriteConfig';
 import { useNavigate } from 'react-router-dom';
+import { 
+    Button,
+    Card, CardHeader, CardBody, CardFooter,
+    Stack,
+    Heading,
+    Text,
+    ButtonGroup,
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText,  
+    } from '@chakra-ui/react';
+import {
+    Input,
+    InputGroup,
+    InputAddon,
+    InputLeftAddon,
+    InputRightAddon,
+    InputLeftElement,
+    InputRightElement,
+    } from "@chakra-ui/input"
+      
 
 function Login() {
     const navigate = useNavigate();
@@ -18,6 +40,15 @@ function Login() {
         }
 
     }
+    const [show, setShow] = React.useState(false)
+    const handleClick = () => setShow(!show)
+    
+    const [input, setInput] = useState('')
+    
+    const handleInputChange = (e) => setInput(e.target.value)
+    
+    const isError = input === ''
+
   return (
     <div>
         <form method='POST'>
@@ -79,6 +110,46 @@ function Login() {
                 Sign In
             </button>
         </form>
+        <Card maxW='sm'>
+            <CardBody>
+                
+                <Stack mt='6' spacing='3'>
+                <Heading size='md'>Living room Sofa</Heading>
+                <FormControl isInvalid={isError}>
+                <FormLabel>Email</FormLabel>
+                <Input type='email' value={input} onChange={handleInputChange} />
+                {!isError ? (
+                    <FormHelperText>
+                    Enter the email youd like to receive the newsletter on.
+                    </FormHelperText>
+                ) : (
+                    <FormErrorMessage>Email is required.</FormErrorMessage>
+                )}
+                </FormControl>
+                <InputGroup size='md'>
+                    <Input
+                        pr='4.5rem'
+                        type={show ? 'text' : 'password'}
+                        placeholder='Enter password'
+                    />
+                    <InputRightElement width='4.5rem'>
+                        <Button h='1.75rem' size='sm' onClick={handleClick}>
+                        {show ? 'Hide' : 'Show'}
+                        </Button>
+                    </InputRightElement>
+                </InputGroup>
+            </Stack>
+            </CardBody>
+            
+            <CardFooter>
+                
+                <Button variant='solid' colorScheme='blue'>
+                    Sign In
+                </Button>
+                
+            </CardFooter>
+        </Card>
+        
     </div>
   )
 }

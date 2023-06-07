@@ -11,15 +11,13 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText,  
+    FormHelperText,
+    Container,
+    Box,  
     } from '@chakra-ui/react';
 import {
     Input,
     InputGroup,
-    InputAddon,
-    InputLeftAddon,
-    InputRightAddon,
-    InputLeftElement,
     InputRightElement,
     } from "@chakra-ui/input"
       
@@ -45,79 +43,35 @@ function Login() {
     
     const [input, setInput] = useState('')
     
-    const handleInputChange = (e) => setInput(e.target.value)
+    // const handleInputChange = (e) => setInput(e.target.value)
     
     const isError = input === ''
 
   return (
-    <div>
-        <form method='POST'>
-            <div>
-                <label
-                htmlFor='name'
-                className=''
-                >
-                    Email
-                </label>
-                <div>
-                    <input
-                      id='email'
-                      name='email'
-                      type='email'
-                      autoComplete='email'
-                      required
-                      onChange={(e) => { 
-                        setUser({
-                        ...user,
-                        email: e.target.value
-                    })}}
-                    />
-                </div>
-            </div>
-            <div>
-                <label
-                htmlFor='password'
-                className=''
-                >
-                    Password
-                </label>
-                <div>
-                    <input
-                      id='password'
-                      name='password'
-                      type='password'
-                      autoComplete='current-password'
-                      required
-                      onChange={(e) => { 
-                        setUser({
-                        ...user,
-                        password: e.target.value
-                    })}}
-                    />
-                </div>
-            </div>
-            <div>
-                <a
-                href='/signup'
-                >
-                    Dont have an account, Sign Up!
-                </a>
-            </div>
-            <button
-                type='submit'
-                onClick={loginUser}
-            >
-                Sign In
-            </button>
-        </form>
+        <Container
+        backgroundImage="url('/images/kyuubi.png')"
+        backgroundPosition="center"
+        backgroundRepeat="no-repeat"
+        >
         <Card maxW='sm'>
             <CardBody>
                 
                 <Stack mt='6' spacing='3'>
-                <Heading size='md'>Living room Sofa</Heading>
+                <Heading size='md'>Welcome!</Heading>
                 <FormControl isInvalid={isError}>
                 <FormLabel>Email</FormLabel>
-                <Input type='email' value={input} onChange={handleInputChange} />
+                <Input 
+                    type='email'  
+                    id='email'
+                    name='email'
+                    autoComplete='email'
+                    required
+                    onChange={(e) => { 
+                        setUser({
+                        ...user,
+                        email: e.target.value
+                    })}}
+                />
                 {!isError ? (
                     <FormHelperText>
                     Enter the email youd like to receive the newsletter on.
@@ -131,6 +85,13 @@ function Login() {
                         pr='4.5rem'
                         type={show ? 'text' : 'password'}
                         placeholder='Enter password'
+                        id='password'
+                        name='password'
+                        onChange={(e) => { 
+                        setUser({
+                        ...user,
+                        password: e.target.value
+                    })}}
                     />
                     <InputRightElement width='4.5rem'>
                         <Button h='1.75rem' size='sm' onClick={handleClick}>
@@ -138,19 +99,30 @@ function Login() {
                         </Button>
                     </InputRightElement>
                 </InputGroup>
+                <Box>
+                    <a
+                    href='/signup'
+                    >
+                        Dont have an account, Sign Up!
+                    </a>
+                </Box>
             </Stack>
             </CardBody>
             
             <CardFooter>
                 
-                <Button variant='solid' colorScheme='blue'>
+                <Button 
+                    variant='solid' 
+                    colorScheme='blue'
+                    type='submit'
+                    onClick={loginUser}
+                >
                     Sign In
                 </Button>
                 
             </CardFooter>
         </Card>
-        
-    </div>
+    </Container>  
   )
 }
 
